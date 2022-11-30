@@ -10,7 +10,7 @@ const server = http.createServer(app);
 export const io = new Server(server);
 
 mongoose.connect('mongodb+srv://dev:WGeEL1v3CyCRgOq7@cluster0.agarbc8.mongodb.net/?retryWrites=true&w=majority').then(() =>{
-  const port = 3001;
+  const port = process.env.PORT || 3001;
 
   app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -27,4 +27,4 @@ mongoose.connect('mongodb+srv://dev:WGeEL1v3CyCRgOq7@cluster0.agarbc8.mongodb.ne
     console.log('🚀 Server is running...');
   });
 })
-  .catch(() => console.log('Erro ao conectar no mongodb'));
+  .catch(() => console.log('Erro ao conectar no banco de dados...'));
